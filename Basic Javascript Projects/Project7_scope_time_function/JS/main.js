@@ -1,11 +1,11 @@
 function get_Date() {
     if (new Date().getHours() < 22) {
-        document.getElementById("Greeting").innerHTML = "How are you today?";
+        document.getElementById("Greeting").innerHTML = "How are you today?";    //creates an if function
     }
 }
 
 if (5<10) {
-    document.write("The left number is smaller than the number on the right")
+    document.write("The left number is smaller than the number on the right")   //creates an if function that prints the phrase if 5 is lower than 10
 }
 
 function Age_Function()  {
@@ -16,7 +16,7 @@ function Age_Function()  {
     else {
         Vote = "You are not old enough to vote!";
     }
-    document.getElementById("How_old_are_you?").innerHTML = Vote;
+    document.getElementById("How_old_are_you?").innerHTML = Vote;  //creates an else if function
 }
 
 function Time_function() {
@@ -29,7 +29,7 @@ function Time_function() {
         Reply = "It is afternoon."
     }
     else {
-        Reply = "It is evening time."}
+        Reply = "It is evening time."}                               //creates an else if funtion with more than one variable
     
     document.getElementById("Time_of_day").innerHTML = Reply;
 }
@@ -42,24 +42,24 @@ function Add_numbers_2 () {
     document.write(X + 100);
 }
 Add_numbers_1();
-Add_numbers_2();
+Add_numbers_2();                                                       //global function
 
 function Add_numbers_1() {
-    var X = 10;
-    document.write(20 + X + "<br>");
+       var Y = 10;
+  document.write(20 + Y + "<br>");
 }
 function Add_numbers_2() {
-    document.write(X + 100);
+  document.write(Y + 100);
 } 
 Add_numbers_1();
-Add_numbers_2();
+Add_numbers_2();                                                        //local function, prints a result of 30
 
 function Add_numbers_1() {
-    var X = 10;
-    console.log(15 + X);
+    var Z = 10;
+    console.log(20 + Z);
 }
 function Add_numbers_2() {
-    console.log(X + 100);
+    console.log(Z + 100);
 }
 Add_numbers_1();
-Add_numbers_2();
+Add_numbers_2();                                                        //produces a console.log error saying z is not defined
