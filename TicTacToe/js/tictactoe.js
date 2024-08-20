@@ -39,9 +39,9 @@ function placeXOrO(squareNumber) {
         //This condition checks to see if its the computers turn
         if (activePlayer === 'O')
             //This function disables clicking for computers turn.
-            disableClick();
+           {disableClick();
         //This function waits one second before the computer places an image and enables click
-     setTimeout(function () { computersTurn(); }, 1000);
+     setTimeout(function () { computersTurn(); }, 1000);}
 
         //Returning true is needed for our computersTurn() function to work.
         return true;
@@ -72,19 +72,19 @@ function checkWinConditions() {
     //X O 1,2 condition.
     if (arrayIncludes('0X', '1X', '2X')) { drawWinLine(50, 100, 558, 100) }
     //X 3,4,5 condition
-    else if (arrayIncludes('3X', '4X', '5x')) { drawWinLine(50, 304, 558, 304) }
+    else if (arrayIncludes('3X', '4X', '5X')) { drawWinLine(50, 304, 558, 304) }
     //X 6,7,8 condition
-    else if (arrayIncludes('6X', '7X', '8x')) { drawWinLine(50, 508, 558, 508) }
+    else if (arrayIncludes('6X', '7X', '8X')) { drawWinLine(50, 508, 558, 508) }
     // x0,3,6 condition
-    else if (arrayIncludes('0X', '3X', '6x')) { drawWinLine(100, 50, 100, 558) }
+    else if (arrayIncludes('0X', '3X', '6X')) { drawWinLine(100, 50, 100, 558) }
     // X,1,4,7 condition
-    else if (arrayIncludes('1X', '4X', '7x')) { drawWinLine(304, 50, 304, 558) }
+    else if (arrayIncludes('1X', '4X', '7X')) { drawWinLine(304, 50, 304, 558) }
     // X 2,5,8 condition
-    else if (arrayIncludes('2X', '5X', '8x')) { drawWinLine(508, 50, 508, 558) }
+    else if (arrayIncludes('2X', '5X', '8X')) { drawWinLine(508, 50, 508, 558) }
     // X 6,4,2 condition.
-    else if (arrayIncludes('6X', '4X', '2x')) { drawWinLine(100, 508, 510, 90) }
+    else if (arrayIncludes('6X', '4X', '2X')) { drawWinLine(100, 508, 510, 90) }
     // X 0,4,8 condition
-    else if (arrayIncludes('0X', '4X', '8x')) { drawWinLine(100, 100, 520, 520) }
+    else if (arrayIncludes('0X', '4X', '8X')) { drawWinLine(100, 100, 520, 520) }
     // O 0,1,2 condition
     else if (arrayIncludes('0O', '1O', '2O')) { drawWinLine(50, 100, 558, 100) }
     // O3,4,5 condition
@@ -172,17 +172,10 @@ function drawWinLine(coordX1, coordY1, coordX2, coordY2) {
         //This method draws everything we laid out above
         c.stroke();
         //This condition checks if we've reached the endpoints.
-        if (x1 <= x2 && y1 <= y2) {
-            //This condition adds 10 to the previous x endpoint.
-            if (x < x2) { x += 10; }
-            //This condition adds 10 to the previous y endpoint.
-            if (y < y2) { y += 10; }
-            //This condition is similar to the one above.  This is necessary for the 6,4,2 win condition.
-            if (x1 <= x2 && y1 >= y2) {
-                if (x < x2) { x += 10; }
-                if (x > y2) { y -= 10; }
-                if (x >= x2 && y < + y2) { cancelAnimationFrame(animationLoop); }
-            }
+        if (x1 <= x2 && y1 >= y2) {
+            if  (x < x2)  { x += 10; }
+            if  (y > y2)  { y -= 10; }
+            if  (x >= x2 && y <= y2) {cancelAnimationFrame(animationLoop); }
         }
     }
 
