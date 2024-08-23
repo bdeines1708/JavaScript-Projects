@@ -35,7 +35,7 @@ function Input_Decimal(dot) {
 
 //This section handles operators
 function Handle_Operator (Next_Operator) {
-    Calculator.First_Operand = Value_of_Input;
+    const {First_Operand, Display_Value, operator} = Calculator;
     //when the operator key is pressed we convert the number displayed on the screento a number and then store the result in Calculator.First_Operand if it doesnt already exist.
     const Value_of_Input = parseFloat(Display_Value);
     //Checks if an operator already exists and if Wait_Second_Operand is true then updates the operator and exits from the function
@@ -64,8 +64,7 @@ const Perform_Calculation = {
     '/': (First_Operand, Second_Operand) => First_Operand / Second_Operand,
     '*': (First_Operand, Second_Operand) => First_Operand * Second_Operand,
     '+': (First_Operand, Second_Operand) => First_Operand + Second_Operand,
-    '-': (First_Operand, Second_Operand) =>
-     First_Operand - Second_Operand,
+    '-': (First_Operand, Second_Operand) => First_Operand - Second_Operand,
     '=': (First_Operand, Second_Operand) => Second_Operand
 };
 function Calculator_Reset () {
@@ -77,33 +76,37 @@ function Calculator_Reset () {
 //This function updates the calculator screen with the contents of display value
 function Update_Display() {
     //Makes use of the calculator-screen class to target the input tag in the HTML document.
-    const display = document.querySelector ('calculator-screen');
+    const display = document.querySelector ('.calculator-screen');
     display.value = Calculator.Display_Value;
 }
 
 Update_Display();
 //This section monitors button clicks
 const keys = document.querySelector('.calculator-keys');
-keys.addEventListener('click', (event) => {
+keys.addEventListener('click', function (event) {
     //The target variable is an object that represents an event that was clicked.
-    const { target } = event;
-    if (!target .matches('button')) {
-        return;
-}
-if (target.classList.comtains('operator')) {
-    Handle_Operator(target.value);
-    Update_Display();
-    return;
-}
-if (target.classList.contains('operator')) {
-    Handle_Operator(target.value);
-    Update_Display();
-    return;
-}
+        const { target } = event;
+        if (!target.matches('button')) {
+            return;
+        }
+        if (target.classList.contains('operator')) {
+            Handle_Operator(target.value);
+            Update_Display();
+            return;
+        }
+        if (target.classList.contains('decimal')) {
+            Input_Decimal(target.value);
+            Update_Display();
+            return;
+        }
 
-//Ensures the AC clears all inputs from the calculator screen.
-if (target.classList.containes('all-clear')) {
-
-}
+        //Ensures the AC clears all inputs from the calculator screen.
+        if (target.classList.contains('all-clear')) {
+            Calculator_Reset();
+            Update_Display();
+            return;
+        }
+        Input_Digit(target.value);
+        Update_Display();
 }
 )
